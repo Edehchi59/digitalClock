@@ -40,4 +40,4 @@ No external libraries or frameworks are used in this project. It relies on stand
 
 This project is created as a learning exercise and can be freely used, modified, and distributed.
 
-## demo live `link` `https://edehchi59.github.io/digitalClock.github.io/` check it out on your browser.
+## demo live `link` https://edehchi59.github.io/digitalClock.github.io/ check it out on your browser.
