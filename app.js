@@ -10,42 +10,32 @@ const formatTime = (date) => {
   return `${hour12}:${minutes}:${seconds} ${isAm ? "am" : "pm"}`;
 };
 
-const formatDate = (date) => {
+const formatDate = async (date) => {
   const month = date.getMonth();
   const day = date.getDate();
   const week = date.getDay();
   const year = date.getFullYear();
+  try {
+    const response = await fetch("./calender.json");
 
-  const Months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const daysInWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const Days = [];
+    const Months = [];
+    const data = await response.json();
 
-  return `${daysInWeek[week]}, ${Months[month]} ${day} ${year}`;
+    Months.push(data.months);
+    Days.push(data.days);
+    console.log(Months); // Array of months
+    console.log(Days); // Array of days
+    return `${data.days[week]}, ${data.months[month]} ${day} ${year}`;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
 };
 
-setInterval(() => {
-  const dateTime = new Date();
-  timeElement.innerHTML = formatTime(dateTime);
-
-  dateElement.innerHTML = formatDate(dateTime);
-}, 10);
+setInterval(async () => {
+  timeElement.innerHTML = formatTime(new Date());
+  dateElement.innerHTML = await formatDate(new Date());
+}, 10); // 1000ms = 1 second
