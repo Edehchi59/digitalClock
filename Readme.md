@@ -11,7 +11,8 @@ This project is a simple digital clock implemented using HTML, CSS, and JavaScri
 - **style.css:** The CSS file styles the digital clock, defining its appearance, font, and layout.
 
 - **app.js:** The JavaScript file contains the logic for updating the time and rendering it on the clock. It uses the `Date` object to get the current time.
-
+- 
+- **calender.json** The Json file used to pull the days and month data 
 ## Features
 
 - **Real-Time Update:** The clock updates in real-time, reflecting the current time.
